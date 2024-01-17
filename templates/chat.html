@@ -1,0 +1,73 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANAN | CHAT</title>
+    <link rel="shortcut icon" href="/static/images/fav.png" type="image/png">
+
+    <!-- Prefetch -->
+    <link rel="preload" href="/static/images/public.svg" as="image">
+    <link rel="preload" href="/static/images/error.svg" as="image">
+
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/chat.css">
+</head>
+
+<body>
+    <main>
+        <section id="rooms">
+            <div id="public" class="room a"></div>
+        </section>
+        <section id="room">
+            <section id="room-members">
+            </section>
+            <section id="room-chat">
+
+                <div id="chat-display">
+                    <div class="chat-bubble-container example">
+                        <div class="chat-bubble">
+                            <div class="user">User Name</div>
+                            <div class="message">
+                                jdwdiudjwdiudawdddddddddddddddddddddddddddddddddddddddddddddddddwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwddddddddddddddddddddddddddddd<br>jdwuidawdiadawi
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-bubble-container self example">
+                        <div class="chat-bubble">
+                            <div class="message">
+                                jdwdiudjwdiudawddddddddddddddddddddddddddddddddddddddd<br>jdwuidawdiadawi
+                            </div>
+                        </div>
+                        <div class="loading"></div>
+                        <div class="error"></div>
+                    </div>
+                    <div class="chat-bubble-container example">
+                        <div class="chat-bubble">
+                            <div class="user">User Name</div>
+                            <div class="message">
+                                jdwdiudjwdiudawdddddddddddddddddddddddddddddddddddddddddddddddddwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwddddddddddddddddddddddddddddd<br>jdwuidawdiadawi
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="down" id="down"></div>
+                
+                <div class="gap" id="gap"></div>
+
+                <div id="chat-input">
+                    <textarea id="textArea" rows="1" placeholder="Type your message here..."
+                        oninput="adjustTextareaHeight(this)" onkeydown="captureInput(event)"></textarea>
+                </div>
+            </section>
+            <section id="room-info"></section>
+        </section>
+    </main>
+    <script src="/static/js/cookies.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/static/js/sock.js"></script>
+    <script async src="/static/js/chat.js"></script>
+</body>
+
+</html>

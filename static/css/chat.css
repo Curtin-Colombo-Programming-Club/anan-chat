@@ -1,0 +1,300 @@
+main {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 72px auto;
+    overflow-x: auto;
+}
+
+#room {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 240px auto 220px;
+}
+
+#rooms {
+    background-color: rgb(7, 7, 7);
+    display: flex;
+    align-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+}
+
+#public {
+    background-image: url("../images/public.svg");
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#rooms div {
+    cursor: pointer;
+    margin-top: 1em;
+    height: auto;
+    padding: 25px;
+    background-color: #1f1f1f;
+    transition: background-color 0.3s;
+    border-radius: 100%;
+}
+
+#rooms div:hover {
+    background-color: #323232;
+}
+
+#rooms div.a {
+    background-color: #3f3f3f;
+}
+
+#rooms div img {
+    height: 30px;
+}
+
+#room-members {
+    background-color: rgb(10, 10, 10);
+}
+
+#room-chat {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    min-width: 500px;
+    max-height: 100vh;
+    position: relative;
+}
+
+#room-chat::before {
+    position: absolute;
+    z-index: 1000;
+    content: " ";
+    display: block;
+    width: 100%;
+    height: 1em;
+    background: linear-gradient(to top, transparent, black);
+}
+
+#room-chat .down {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    position: relative;
+}
+
+#room-chat .down::before {
+    content: " ";
+    background-color: rgb(15, 15, 15, 0.8);
+    background-image: url(/static/images/down.svg);
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    display: none;
+    visibility: hidden;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: -1em;
+    transform: translate(-50%, -100%);
+    transition: background-color 0.3s;
+}
+
+#room-chat .down:hover::before {
+    background-color: rgb(60, 60, 60);
+}
+
+#room-chat.not-down .down::before {
+    display: block;
+    visibility: visible;
+}
+
+#chat-display {
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+}
+
+#chat-display::-webkit-scrollbar {
+    width: 10px;
+    padding: 1em;
+    margin: 1em;
+    /* Width of the scrollbar */
+}
+
+/* Handle */
+#chat-display::-webkit-scrollbar-thumb {
+    background-color: #565656;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Track */
+#chat-display::-webkit-scrollbar-track {
+    background-color: none;
+    padding: 1em;
+    margin: 1em;
+    /* Color of the scrollbar track */
+}
+
+#chat-display::after {
+    content: " ";
+    display: block;
+    width: 100%;
+    height: 1em;
+    background: linear-gradient(to bottom, transparent, black);
+}
+
+.chat-bubble-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1em 1em 0 1em;
+}
+
+.chat-bubble-container.follow {
+    padding-top: 0.5em;
+}
+
+.chat-bubble-container.self {
+    justify-content: flex-end;
+}
+
+.chat-bubble {
+    padding: 1em;
+    border-radius: 5px;
+    width: fit-content;
+    max-width: 70%;
+    color: white;
+    background-color: #1f1f1f;
+}
+
+.chat-bubble .user {
+    color: aqua;
+    font-weight: bold;
+}
+
+.chat-bubble .message {
+    margin-top: 0.5em;
+    word-wrap: break-word;
+}
+
+.chat-bubble-container.self .message {
+    margin-top: 0;
+}
+
+.loading {
+    border: 4px solid rgb(10, 10, 10);
+    /* Light gray border */
+    border-top: 4px solid #1f1f1f;
+    /* Blue border on top */
+    border-radius: 50%;
+    /* Create a circular shape */
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    /* Rotate animation */
+    margin-left: 10px;
+    /* Center the loading circle */
+
+    transition: width 0.5s, height 0.5s, margin-left 0.5s, border-width 0.5s;
+}
+
+.chat-bubble-container.sent .loading,
+.chat-bubble-container.not-sent .loading {
+    width: 0;
+    height: 0;
+    margin-left: 0;
+    border-width: 0;
+}
+
+.error {
+    display: none;
+    background-image: url(../images/error.svg);
+    background-size: 45px;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    width: 38px;
+    height: 38px;
+}
+
+.chat-bubble-container.not-sent .error {
+    display: block;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#chat-input {
+    background-color: rgb(14, 14, 14);
+    height: auto;
+    max-height: 30vh;
+    position: relative;
+}
+
+#chat-input::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 1em;
+    background: linear-gradient(to bottom, transparent, black);
+    transform: translateY(-100%);
+}
+
+#textArea {
+    width: calc(100% - 1em);
+    height: auto;
+    margin: 1em 0.5em;
+    padding: 5px;
+    max-height: 10em;
+    /* Maximum height of 5 lines */
+    resize: none;
+    overflow-y: auto;
+    /* Add a scrollbar when content exceeds the maximum height */
+    font-size: 1.2em;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+#textArea:hover {
+    background-color: #181818;
+}
+
+#textarea::-webkit-scrollbar {
+    width: 10px;
+    /* Width of the scrollbar */
+}
+
+/* Handle */
+#textarea::-webkit-scrollbar-thumb {
+    background-color: #565656;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Track */
+#textarea::-webkit-scrollbar-track {
+    background-color: none;
+    /* Color of the scrollbar track */
+}
+
+#room-info {
+    background-color: rgb(10, 10, 10);
+}

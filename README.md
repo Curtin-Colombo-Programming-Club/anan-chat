@@ -1,2 +1,3 @@
 # anan-chat
-A chat forum for anonymous animals
+
+Still under development

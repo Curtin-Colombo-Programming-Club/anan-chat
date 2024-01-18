@@ -65,7 +65,7 @@ socket.on("pong", async () => {
     document.getElementById("ping-bars").classList.add(cl);
 
     // next ping -> pong -> ding
-    await sleep(5000);
+    await sleep(10000);
     socket.t = new Date();
     socket.timeout(2000).emit("ping")
 });

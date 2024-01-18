@@ -16,21 +16,19 @@ class Controller {
 
     sessionManager(socket, next) {
         // authentication
-        console.log(`\nhs token: ${socket.handshake.auth.token}`);
-        console.log(socket.handshake.address);
-        console.log(`hs sid: ${socket.id}`);
-
+        console.log(`\nConnection by ip: ${socket.handshake.address}\n\thand shake sid: ${socket.id}\n\thand shake token: ${socket.handshake.auth.token}`)
+        
         let user = this.users.getUser(socket.handshake.auth.token) || this.users.getUserByIP(socket.handshake.address);
 
-        console.log(user);
         if (user != null) {
             if (user.connected) {
-                console.log("User already exist")
+                console.log(`\nSession by User(ip:${socket.handshake.address}, username:${user.username}) already exist, returning error-409!`)
                 const err = new Error("Session Already Exist!");
                 err.data = { code: 409 };
                 next(err);
             }
             else {
+                console.log(`\nUser(ip:${socket.handshake.address}, username:${user.username}) returned!`)
                 user.sid = socket.id;
                 user.connected = true;
             }
@@ -38,17 +36,16 @@ class Controller {
 
         // new user
         if (user === null) {
-            console.log("sending token")
             user = this.users.newUser(socket.handshake.address);
             user.sid = socket.id;
             user.connected = true;
+            console.log(`\nnew user!\n\tUser(ip:${socket.handshake.address}, username:${user.username})\n\tsid: ${socket.id}\n\ttoken: ${user.token}`)
         }
 
         socket.token = user.token;
         socket.username = user.username;
         socket.color = user.color;
 
-        console.log(`-- token: ${socket.token}, sid: ${socket.id}`);
         next();
     }
 

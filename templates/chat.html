@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="down" id="down"></div>
-                
+
                 <div class="gap" id="gap"></div>
 
                 <div id="chat-input">
@@ -61,12 +61,25 @@
                         oninput="adjustTextareaHeight(this)" onkeydown="captureInput(event)"></textarea>
                 </div>
             </section>
-            <section id="room-info"></section>
+        </section>
+        <section id="updates">
+            <div id="server-info">
+                <div id="ping-container" class="si-container">
+                    <div id="ping-txt">000</div>
+                    <div id="ping-bars">
+                        <div class="_1"></div>
+                        <div class="_2"></div>
+                        <div class="_3"></div>
+                    </div>
+                </div>
+                <div id="packet-container" class="si-container"><span id="packet-txt">100%</span></div>
+            </div>
+            <div id="update-messages"></div>
         </section>
     </main>
     <script src="/static/js/cookies.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/static/js/sock.js"></script>
+    <script async src="/static/js/sock.js"></script>
     <script async src="/static/js/chat.js"></script>
 </body>
 

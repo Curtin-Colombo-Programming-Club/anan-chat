@@ -61,6 +61,25 @@ class Controller {
             //
             socket.emit("auth", { token: socket.token });
 
+            // ping 
+            socket.on("ping", async () => {
+                let responseTime = new Date();
+                if (!socket.t) {
+                    console.log(`${socket.username}, Initail ping request`);
+                }
+
+                socket.t = responseTime;
+                //await sleep(100);
+                socket.emit("pong");
+            });
+
+            // pong
+            socket.on("ding", () => {
+                console.log(`${socket.username}, ping: ${new Date() - socket.t} ms`);
+            })
+
+
+
             // chat
             // message
             socket.on("message", async (data, callback) => {

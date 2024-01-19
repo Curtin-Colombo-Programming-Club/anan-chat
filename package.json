@@ -15,5 +15,16 @@
     "http": "^0.0.1-security",
     "socket.io": "^4.7.4",
     "uuid": "^9.0.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Curtin-Colombo-Programming-Club/anan-chat.git"
+  },
+  "keywords": [
+    "anan"
+  ],
+  "bugs": {
+    "url": "https://github.com/Curtin-Colombo-Programming-Club/anan-chat/issues"
+  },
+  "homepage": "https://github.com/Curtin-Colombo-Programming-Club/anan-chat#readme"
 }
